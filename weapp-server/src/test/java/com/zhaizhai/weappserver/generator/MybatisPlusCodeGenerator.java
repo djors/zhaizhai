@@ -10,11 +10,11 @@ import java.util.Collections;
 
 public class MybatisPlusCodeGenerator {
     public static void main(String[] args) {
-        FastAutoGenerator.create("url", "username", "password")
+        FastAutoGenerator.create("jdbc:mysql://localhost:3306/test", "root", "cz1997323")
                 .globalConfig(builder -> {
-                    builder.author("baomidou") // 设置作者
-                            .enableSwagger() // 开启 swagger 模式
-                            .outputDir("D://"); // 指定输出目录
+                    builder.author("djors") // 设置作者
+//                            .enableSwagger() // 开启 swagger 模式
+                            .outputDir("/Users/caizhi/IdeaProjects/zhaizhai/weapp-server/src/main/java");
                 })
                 .dataSourceConfig(builder ->
                         builder.typeConvertHandler((globalConfig, typeRegistry, metaInfo) -> {
@@ -27,13 +27,16 @@ public class MybatisPlusCodeGenerator {
                         })
                 )
                 .packageConfig(builder ->
-                        builder.parent("com.baomidou.mybatisplus.samples.generator") // 设置父包名
-                                .moduleName("system") // 设置父包模块名
-                                .pathInfo(Collections.singletonMap(OutputFile.xml, "D://")) // 设置mapperXml生成路径
+                        builder.parent("com.zhaizhai.weappserver") // 设置父包名
+                                .entity("infrastructure.entity")
+                                .mapper("infrastructure.mapper")
+                                .service("infrastructure.service")
+                                .serviceImpl("infrastructure.service.impl")
+                                .pathInfo(Collections.singletonMap(OutputFile.xml, "/Users/caizhi/IdeaProjects/zhaizhai/weapp-server/src/main/java/resources/mapper")) // 设置mapperXml生成路径
                 )
                 .strategyConfig(builder ->
-                        builder.addInclude("t_simple") // 设置需要生成的表名
-                                .addTablePrefix("t_", "c_") // 设置过滤表前缀
+                        builder.addInclude("comics") // 设置需要生成的表名
+//                                .addTablePrefix("t_", "c_") // 设置过滤表前缀
                 )
                 .templateEngine(new FreemarkerTemplateEngine()) // 使用Freemarker引擎模板，默认的是Velocity引擎模板
                 .execute();
