@@ -2,6 +2,10 @@ package com.zhaizhai.weappserver.infrastructure.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableLogic;
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
 /**
@@ -12,6 +16,9 @@ import java.io.Serializable;
  * @author djors
  * @since 2025-05-25
  */
+@Data
+@EqualsAndHashCode(callSuper = false)
+@TableName("comics")
 public class Comics implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -70,110 +77,6 @@ public class Comics implements Serializable {
     /**
      * 是否删除（0：未删除，1：已删除）
      */
-    private Boolean status;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getOriginalTitle() {
-        return originalTitle;
-    }
-
-    public void setOriginalTitle(String originalTitle) {
-        this.originalTitle = originalTitle;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public Double getScore() {
-        return score;
-    }
-
-    public void setScore(Double score) {
-        this.score = score;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public String getRegion() {
-        return region;
-    }
-
-    public void setRegion(String region) {
-        this.region = region;
-    }
-
-    public String getSummary() {
-        return summary;
-    }
-
-    public void setSummary(String summary) {
-        this.summary = summary;
-    }
-
-    public String getCoverUrl() {
-        return coverUrl;
-    }
-
-    public void setCoverUrl(String coverUrl) {
-        this.coverUrl = coverUrl;
-    }
-
-    public String getAttributes() {
-        return attributes;
-    }
-
-    public void setAttributes(String attributes) {
-        this.attributes = attributes;
-    }
-
-    public Boolean getStatus() {
-        return status;
-    }
-
-    public void setStatus(Boolean status) {
-        this.status = status;
-    }
-
-    @Override
-    public String toString() {
-        return "Comics{" +
-            "id = " + id +
-            ", title = " + title +
-            ", originalTitle = " + originalTitle +
-            ", author = " + author +
-            ", score = " + score +
-            ", category = " + category +
-            ", region = " + region +
-            ", summary = " + summary +
-            ", coverUrl = " + coverUrl +
-            ", attributes = " + attributes +
-            ", status = " + status +
-        "}";
-    }
+    @TableLogic
+    private Integer status;
 }
